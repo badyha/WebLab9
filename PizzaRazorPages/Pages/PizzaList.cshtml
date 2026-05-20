@@ -1,0 +1,146 @@
+@page
+@model PizzaListModel
+@{
+    ViewData["Title"] = "Pizza List";
+}
+
+<div class="container">
+    <h1>🍕 Список піц</h1>
+
+    <div class="actions">
+        <a class="btn btn-success" asp-page="CreatePizza">+ Додати нову піцу</a>
+        <a class="btn btn-secondary" asp-page="Index">← Назад</a>
+    </div>
+
+    @if (Model.Pizzas.Count == 0)
+    {
+        <div class="empty-message">
+            <p>Немає піц в базі даних. Додайте нову піцу!</p>
+        </div>
+    }
+    else
+    {
+        <table class="pizza-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Назва</th>
+                    <th>Розмір</th>
+                    <th>Ціна (₴)</th>
+                    <th>Кількість</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pizza in Model.Pizzas)
+                {
+                    <tr>
+                        <td>@pizza.Id</td>
+                        <td>@pizza.Name</td>
+                        <td>@pizza.Size</td>
+                        <td>@pizza.Price.ToString("F2")</td>
+                        <td>@pizza.Quantity</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" asp-page="EditPizza" asp-route-id="@pizza.Id">Редагувати</a>
+                            <a class="btn btn-sm btn-danger" asp-page="DeletePizza" asp-route-id="@pizza.Id">Видалити</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<style>
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #d4a574;
+        margin-bottom: 20px;
+    }
+
+    .actions {
+        margin: 20px 0;
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s;
+    }
+
+    .btn-success {
+        background-color: #4a7c59;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #2d5016;
+    }
+
+    .btn-secondary {
+        background-color: #999;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #777;
+    }
+
+    .btn-info {
+        background-color: #667eea;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #ff6b6b;
+        color: white;
+    }
+
+    .btn-sm {
+        padding: 4px 12px;
+        font-size: 0.9em;
+    }
+
+    .pizza-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .pizza-table thead {
+        background-color: #667eea;
+        color: white;
+    }
+
+    .pizza-table th, .pizza-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .pizza-table tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    .empty-message {
+        text-align: center;
+        padding: 40px;
+        background-color: #f5f5f5;
+        border-radius: 6px;
+        color: #999;
+        font-size: 1.1em;
+    }
+</style>

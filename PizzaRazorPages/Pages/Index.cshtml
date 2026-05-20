@@ -1,0 +1,84 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Pizza Inventory";
+}
+
+<div class="container">
+    <h1>🍕 Управління запасами піци</h1>
+    
+    <div class="nav-buttons">
+        <a class="btn btn-primary" asp-page="PizzaList">Список піц</a>
+        <a class="btn btn-success" asp-page="CreatePizza">Додати піцу</a>
+    </div>
+
+    <div class="welcome-message">
+        <p>Ласкаво просимо до системи управління запасами піци!</p>
+        <p>Виберіть опцію в меню вище для управління піцами.</p>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 30px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #d4a574;
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+
+    .nav-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 30px 0;
+    }
+
+    .btn {
+        padding: 12px 30px;
+        font-size: 1.1em;
+        border-radius: 6px;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #667eea;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #764ba2;
+        transform: translateY(-2px);
+    }
+
+    .btn-success {
+        background-color: #4a7c59;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #2d5016;
+        transform: translateY(-2px);
+    }
+
+    .welcome-message {
+        background-color: #f5f5f5;
+        padding: 30px;
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+
+    .welcome-message p {
+        font-size: 1.1em;
+        color: #333;
+        margin: 10px 0;
+    }
+</style>
